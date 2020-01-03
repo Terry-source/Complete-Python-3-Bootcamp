@@ -25,15 +25,27 @@ class Deck():
                 self.deck.append(Card(suit,rank))
 
     def __str__(self):
-        return self.deck
+        deck_comp = ''
+        for card in self.deck:
+            deck_comp += '\n ' + card.__str__()
+        return 'Deck contains: ' + deck_comp
 
     def shuffle(self):
         random.shuffle(self.deck)
 
     def deal(self):
-
+        single_card = self.deck.pop()
+        return single_card
 
 class Hand():
     def __init__(self):
+        self.cards = []
+        self.value = 0
+        self.aces = 0
 
-    def player_hand(self):
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += values[card.rank]
+
+    def adjust_for_ace(self):
+        pass
