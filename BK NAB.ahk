@@ -28,8 +28,8 @@ SendMessage,0x112,0xF170,2,,Program Manager
 *^\::Suspend
 return
 
-*Enter::
-return
+;*Enter::
+;return
 
 *Capslock::
 return
