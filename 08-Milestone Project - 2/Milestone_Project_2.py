@@ -111,16 +111,15 @@ def hit_or_stand(deck, hand):
         break
 
 def show_some(player, dealer):
-    print("\nDealer's Hand:")
-    print(" <card hidden>")
-    print('',dealer.cards[1])
-    print("\nPlayer's Hand:", *player.cards, sep='\n ')
+    print("\nDealer's Hand: <card hidden> ",dealer.cards[1])
+    print("\nPlayer's Hand:", *player.cards, sep=' ')
+    print("\nPlayer's score: ", player.value)
 
 def show_all(player, dealer):
-    print("\nDealer's Hand:", *dealer.cards, sep='\n ')
-    print("Dealer's Hand = ", dealer.value)
-    print("\nPlayer's Hand:", *player.cards, sep='\n ')
-    print("Player's Hand = ", player.value)
+    print("\nDealer's Hand:", *dealer.cards, sep=' ')
+    print("\nDealer's score: ", dealer.value)
+    print("\nPlayer's Hand:", *player.cards, sep=' ')
+    print("\nPlayer's score: ", player.value)
 
 def player_busts(player, dealer, chips):
     print("Player busts!")
@@ -146,6 +145,7 @@ while True:
     print("Welcome to Blackjack! Get as close to 21 as you can without going over!\n\
     Dealer hits until she reaches 17. Aces count as 1 or 11.")
 
+    # initialize game with
     deck = Deck()
     deck.shuffle()
 
