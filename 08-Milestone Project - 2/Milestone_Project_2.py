@@ -56,7 +56,7 @@ class Hand():
             self.aces += 1
 
     def adjust_for_ace(self):
-        while self.cards > 21 and self.aces:
+        while self.value > 21 and self.aces:
             self.value -= 10
             self.aces -= 1
 
@@ -121,24 +121,25 @@ def show_all(player, dealer):
     print("\nPlayer's Hand:", *player.cards, sep=' ')
     print("\nPlayer's score: ", player.value)
 
-def player_busts(player, dealer, chips):
+def player_busts(chips):
     print("Player busts!")
     chips.lose_bet()
 
-def player_wins(player, dealer, chips):
+def player_wins(chips):
     print("Player wins")
     chips.win_bet()
 
-def dealer_busts(player, dealer, chips):
+def dealer_busts(chips):
     print("Dealer busts!")
     chips.win_bet()
 
-def dealer_wins(player, dealer, chips):
+def dealer_wins(chips):
     print("Dealer wins")
     chips.lose_bet()
 
-def push(player, dealer):
+def push():
     print("Dealer and Player tie! It's a push.")
+
 
 
 while True:
@@ -169,8 +170,43 @@ while True:
         show_some(player_hand, dealer_hand)
 
         if player_hand.value > 21:
-            player_busts(player_hand, dealer_hand, player_chips)
+            player_busts(player_chips)
             break
+
+    if player_hand.value <= 21:
+        while dealer_hand.value < 17:
+            hit(deck, dealer_hand)
+
+        show_all(player_hand,dealer_hand)
+
+        if dealer_hand.value > 21:
+            dealer_busts(player_chips)
+
+        elif dealer_hand.value > player_hand.value:
+            dealer_wins(player_chips)
+
+        elif dealer_hand.value < player_hand.value:
+            player_wins(player_chips)
+
+        else:
+            push()
+
+    print("Player chips at ",player_chips.total)
+
+    while True:
+        new_game = input("Another game? Enter y or n: ")
+        if (new_game == 'y' or new_game == 'n'):
+            break
+        else:
+            print("Input error.")
+            continue
+
+    if new_game == 'y':
+        playing = True
+        continue
+    else:
+        print("Game will shut down.")
+        break
 
 
 
