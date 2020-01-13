@@ -23,5 +23,3 @@ RAlt::Left
 
 AppsKey::Right
 
-RControl::End
-
